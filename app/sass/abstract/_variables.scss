@@ -1,0 +1,48 @@
+@use 'colors';
+@use 'fonts';
+@use 'sass:map';
+@use 'functions' as *;
+
+$color_map: colors.$colors;
+$font_map: fonts.$fonts-weights;
+$px_map: fonts.$px-map;
+$rem_map: fonts.$rem-map;
+
+$white: get-map($color_map, 'white');
+$black: get-map($color_map, 'black');
+$dark-gray: get-map($color_map, 'dark-gray');
+$light-gray: get-map($color_map, 'light-gray');
+$dark-orange: get-map($color_map, 'dark-orange');
+$dark-yellow: get-map($color_map, 'dark-yellow');
+$dark-green: get-map($color_map, 'dark-green');
+$dark-purple: get-map($color_map, 'dark-purple');
+$white-dark: get-map($color_map, 'white-dark');
+
+$dark-blue: get-map($color-map, 'dark-blue');
+
+
+$light-blue: get-map($color_map, 'light-blue');
+$light-orange: get-map($color_map, 'light-orange');
+$light-yellow: get-map($color_map, 'light-yellow');
+$light-green: get-map($color_map, 'light-green');
+$light-purple: get-map($color_map, 'light-purple');
+
+$font-thin: get-map($font_map, 'thin');
+$font-semi-thin: get-map($font_map, 'semi-thin');
+$font-medium: get-map($font_map, 'medium');
+$font-bold: get-map($font_map, 'bold');
+$font-semi-bold: get-map($font_map, 'semi-bold');
+$font-black: get-map($font_map, 'black');
+$font-dark-black: get-map($font_map, 'dark-black');
+
+$px-xss: get-map($px_map, 'xss');
+$px-xs: get-map($px_map, 'xs');
+$px-sm: get-map($px_map, 'sm');
+$px-md: get-map($px_map, 'md');
+$px-lg: get-map($px_map, 'lg');
+
+$rem-xss: get-map($rem_map, 'xss');
+$rem-xs: get-map($rem_map, 'xs');
+$rem-sm: get-map($rem_map, 'sm');
+$rem-md: get-map($rem_map, 'md');
+$rem-lg: get-map($rem_map, 'lg');

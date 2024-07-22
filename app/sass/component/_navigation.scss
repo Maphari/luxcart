@@ -1,0 +1,81 @@
+@use "../abstract" as *;
+
+$padding-rem: 3rem;
+.navigation {
+  $SIZE: 2rem;
+  padding-left: $padding-rem;
+  padding-right: $padding-rem;
+  padding-top: $SIZE;
+  padding-bottom: $SIZE;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__link {
+    display: flex;
+    gap: 1rem;
+
+    &-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: baseline;
+
+      &__category {
+        position: absolute;
+        top: 100%;
+        width: 350%;
+        background-color: $white;
+
+        &-links {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          row-gap: 12px;
+          padding: 8px;
+        }
+      }
+    }
+
+    &__action {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+}
+
+.nav-link {
+  $padding-size: 6px;
+  position: relative;
+  padding: $padding-size;
+
+  &::before,
+  &::after {
+    animation-direction: normal;
+  }
+
+  @keyframes link {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 50%;
+    }
+  }
+}
+
+.add-loading {
+  &:hover::before {
+    top: 0;
+    left: 0;
+    @include nav-link-animate(link, 0.4s, forwards, $dark-gray);
+  }
+
+  &:hover::after {
+    bottom: 0;
+    right: 0;
+    @include nav-link-animate(link, 0.4s, forwards, $dark-gray);
+  }
+}
