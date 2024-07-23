@@ -1,0 +1,24 @@
+@use '../abstract' as *
+
+.button-primary 
+    @include button-properties ($dark-blue, $white, 100px, auto)
+    font-weight: 400
+    border: 1px solid $dark-blue
+    
+    &:hover 
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+        background-color: change-color-opacity('light', $dark-blue, 10)
+
+
+.button-outlined 
+    @include button-properties (transparent, $dark-gray, auto, auto)
+    border: 1px solid $white-dark
+    font-weight: 500
+    color: $dark-gray
+    border: 1px solid $dark-blue
+
+    &:hover 
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+        background-color: $medium-blue
+        color: $white
+    

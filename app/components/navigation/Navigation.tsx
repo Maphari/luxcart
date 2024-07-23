@@ -3,26 +3,55 @@ import React, { useState } from "react";
 import LOGO_IMAGE from "@/public/svg/logo.svg";
 import { Logo } from "@/app/components/utils/Logo";
 import { NextLink } from "@/app/components/utils/Link";
-import { MdArrowDropDown as ArrowDownIcon } from "react-icons/md";
-import { FaLongArrowAltRight as ArrowRightIcon } from "react-icons/fa";
 import { IoCartOutline as CartOutlinedIcon } from "react-icons/io5";
+import { CgMenuRound as MenuIcon } from "react-icons/cg";
+import { IoCloseCircleOutline as CloseIcon } from "react-icons/io5";
 import { Button } from "@/app/components/utils/Button";
+import { IButtons, INavLinks, ISmallScreenProp } from "@/app/types/types";
 
 export const Navigation: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const categoryTransitions: string =
-    "opacity-90 transition-all duration-500 ease-in-out hover:bg-gray-100 hover:opacity-100";
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const handleMouseEnter = () => {
-    setIsOpen(true);
-  };
+  const NavLinks: INavLinks[] = [
+    {
+      name: "Home",
+      href: "/",
+      isLoading: true,
+      position: "center",
+    },
+    {
+      name: "Shop",
+      href: "/shop",
+      isLoading: true,
+      position: "center",
+    },
+    {
+      name: "About",
+      href: "/about",
+      isLoading: true,
+      position: "center",
+    },
+    {
+      name: "Contact",
+      href: "/contact",
+      isLoading: true,
+      position: "center",
+    },
+  ];
 
-  const handleMouseLeave = () => {
-    setIsOpen(false);
-  };
+  const ButtonsAction: IButtons[] = [
+    {
+      name: "LOG IN",
+      type: "outlined",
+    },
+    {
+      name: "SIGN UP",
+      type: "primary",
+    },
+  ];
 
   return (
-    <nav className="navigation">
+    <nav className="navigation relative">
       <section className="navigation_logo">
         <Logo
           src={LOGO_IMAGE.src}
@@ -32,69 +61,79 @@ export const Navigation: React.FC = () => {
           className="w-full h-auto object-cover"
         />
       </section>
-      <section className="navigation__link">
-        <NextLink href="/" name="Home" isLoading position="center" />
-        <section
-          className="navigation__link-container"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <NextLink
-            href="/category"
-            name="Category"
-            className={`gap-1 ${isOpen && "bg-white"}`}
-            childrenClassName="text-xl"
-            children={<ArrowDownIcon />}
-          />
-          {isOpen && (
-            <section className="navigation__link-container__category">
-              <section className="navigation__link-container__category-links px-2 py-1 text-xs opacity-90">
-                <NextLink
-                  href="#"
-                  name="Computer cases"
-                  position="left"
-                  className={`${categoryTransitions} gap-5 rounded`}
-                  children={<ArrowRightIcon />}
-                />
-                <NextLink
-                  href="#"
-                  name="GPU's"
-                  position="left"
-                  className={`${categoryTransitions} gap-5 rounded`}
-                  children={<ArrowRightIcon />}
-                />
-                <NextLink
-                  href="#"
-                  name="Mother board"
-                  position="left"
-                  className={`${categoryTransitions} gap-5 rounded`}
-                  children={<ArrowRightIcon />}
-                />
-                <NextLink
-                  href="#"
-                  name="Monitors"
-                  position="left"
-                  className={`${categoryTransitions} gap-5 rounded`}
-                  children={<ArrowRightIcon />}
-                />
-              </section>
-            </section>
-          )}
-        </section>
-        <NextLink href="/shop" name="Shop" position="center" isLoading />
-        <NextLink href="/about" name="About Us" position="center" isLoading />
-        <NextLink
-          href="/contact"
-          name="Contact Us"
-          position="center"
-          isLoading
-        />
-        <section className="navigation__link__action">
-          <Button type="icon" children={<CartOutlinedIcon />} />
-          <section className="flex gap-1">
-            <Button type="outlined" name="LOG IN" />
-            <Button type="primary" name="SIGN UP" />
+      <section className="small-screen-menu">
+        <section className="flex items-center gap-5">
+          <section className="cart relative">
+            <Button type="icon">
+              <CartOutlinedIcon className="text-3xl" />
+            </Button>
+            <div className="absolute -top-[50%] -right-[30%] bg-blue-950 rounded-full w-6 text-sm h-6 flex items-center justify-center text-white">
+              3
+            </div>
           </section>
+          <button type="button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? (
+              <CloseIcon className="text-4xl" />
+            ) : (
+              <MenuIcon className="text-4xl" />
+            )}
+          </button>
+        </section>
+        {isMenuOpen && (
+          <section className="absolute top-[90%] left-0 w-full bg-transparent flex items-center justify-center flex-col">
+            {NavLinks.map((item: INavLinks, index: number) => (
+              <NextLink
+                key={index}
+                name={item.name}
+                href={item.href}
+                isLoading={item.isLoading}
+                position={item.position}
+              />
+            ))}
+            <section className="w-full mt-5 flex flex-col justify-center items-center gap-2">
+              {ButtonsAction.map((btn: IButtons, index: number) => (
+                <Button
+                  key={index}
+                  name={btn.name}
+                  type={btn.type}
+                  className={`w-full ${
+                    btn.type === "outlined" && "font-semibold"
+                  }`}
+                />
+              ))}
+            </section>
+          </section>
+        )}
+      </section>
+      <section className="nav-linkss flex items-center gap-5">
+        <section className="navigation__link">
+          {NavLinks.map((item: INavLinks, index: number) => (
+            <NextLink
+              key={index}
+              name={item.name}
+              href={item.href}
+              isLoading={item.isLoading}
+              position={item.position}
+            />
+          ))}
+        </section>
+        <section className="navigation__link__action">
+          {ButtonsAction.map((btn: IButtons, index: number) => (
+            <Button
+              key={index}
+              name={btn.name}
+              type={btn.type}
+              className={`${btn.type === "outlined" && "font-semibold"}`}
+            />
+          ))}
+        </section>
+        <section className="cart relative">
+          <Button type="icon">
+            <CartOutlinedIcon className="text-3xl" />
+          </Button>
+          <div className="absolute -top-[50%] -right-[30%] bg-blue-950 rounded-full w-6 text-sm h-6 flex items-center justify-center text-white">
+            3
+          </div>
         </section>
       </section>
     </nav>

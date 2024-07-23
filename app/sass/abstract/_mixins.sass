@@ -1,0 +1,22 @@
+@use 'variables'
+
+@mixin nav-link-animate ($animation-name, $animation-time, $animation-type, $bg-color) 
+    animation: $animation-name $animation-time cubic-bezier(0.165, 0.84, 0.44, 1) $animation-type
+    content: ""
+    position: absolute
+    height: 2px
+    width: 50%
+    background-color: $bg-color
+    z-index: 999
+
+
+// BUTTON .button-primary
+@mixin button-properties ($bg-color, $color, $width, $height) 
+    padding: 9px
+    font-size: 12px
+    background-color: $bg-color
+    color: $color
+    border-radius: 5px
+    max-width: 12rem
+    width: $width
+    height: $height

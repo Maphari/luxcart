@@ -1,0 +1,18 @@
+@use 'sass:map'
+
+
+@function get-map($var, $property) 
+    @if not map-has-key($var, $property) 
+        @warn "Cannot find the property of `#{$property}`"
+        @return null
+    
+    @return map-get($var, $property)
+
+
+
+@function change-color-opacity($option, $color, $opacity) 
+    @if $option == 'light' 
+        @return lighten($color, $opacity)
+    @else if $option == 'dark'
+        @return darken($color, $opacity)
+    
