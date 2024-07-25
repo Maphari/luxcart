@@ -16,3 +16,10 @@ export interface ISmallScreenProp {
     onClick?: () => void;
     children?: React.ReactNode
 }
+
+export interface IHeroInformation {
+  children?: React.ReactNode;
+  header: string;
+  paragraph: string;
+  className?: string;
+}

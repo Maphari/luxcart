@@ -1,0 +1,43 @@
+@use '../abstract' as *
+
+.popular__container
+    $PADDING-TOP-BOTTOM: 2rem
+    $PADDING-LEFT-RIGHT: 3rem
+    $MARGIN-TOP: 2.5rem
+    
+    padding: $PADDING-TOP-BOTTOM $PADDING-LEFT-RIGHT
+    margin-top: $MARGIN-TOP
+
+    &-header
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+        &__info
+            color: $dark-gray
+
+            h1
+                font-size: calc(1.5rem + 1vw)
+                font-weight: 600
+
+        &__buttons
+            display: flex
+            align-items: center
+            justify-content: center
+            gap: 2px
+
+    &-links
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 5px
+        margin-top: $MARGIN-TOP
+        color: $dark-gray
+
+    &-cards
+        margin-top: $MARGIN-TOP
+        color: $dark-gray
+        display: flex
+        flex-wrap: wrap
+        gap: 12px
+        align-items: center

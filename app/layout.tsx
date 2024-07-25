@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import LOGO from "@/public/svg/logo.svg"
 import "./sass/styles.sass";
 
-const inter = Poppins({ weight: "500", subsets: ['latin'] });
+const inter = Poppins({ weight: ["100", "200", "300", "400", "500", "600", "700"], subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Luxcart",

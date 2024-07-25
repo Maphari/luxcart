@@ -8,47 +8,10 @@ import { CgMenuRound as MenuIcon } from "react-icons/cg";
 import { IoCloseCircleOutline as CloseIcon } from "react-icons/io5";
 import { Button } from "@/app/components/utils/Button";
 import { IButtons, INavLinks, ISmallScreenProp } from "@/app/types/types";
+import { ButtonsAction, NavLinks } from "@/app/constant/navigation";
 
 export const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-  const NavLinks: INavLinks[] = [
-    {
-      name: "Home",
-      href: "/",
-      isLoading: true,
-      position: "center",
-    },
-    {
-      name: "Shop",
-      href: "/shop",
-      isLoading: true,
-      position: "center",
-    },
-    {
-      name: "About",
-      href: "/about",
-      isLoading: true,
-      position: "center",
-    },
-    {
-      name: "Contact",
-      href: "/contact",
-      isLoading: true,
-      position: "center",
-    },
-  ];
-
-  const ButtonsAction: IButtons[] = [
-    {
-      name: "LOG IN",
-      type: "outlined",
-    },
-    {
-      name: "SIGN UP",
-      type: "primary",
-    },
-  ];
 
   return (
     <nav className="navigation relative">
@@ -56,7 +19,7 @@ export const Navigation: React.FC = () => {
         <Logo
           src={LOGO_IMAGE.src}
           alt="This is the logo of the luxcart"
-          width={60}
+          width={80}
           height={0}
           className="w-full h-auto object-cover"
         />
