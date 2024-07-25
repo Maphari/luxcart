@@ -1,10 +1,12 @@
 "use-client";
-import { Navigation } from "../navigation/Navigation";
+import { Hero } from "./Hero";
+import { PopularProducts } from "./PopularProducts";
 
 export const Landing: React.FC = () => {
   return (
     <>
-      <Navigation />
+      <Hero />
+      <PopularProducts />
     </>
   );
 };

@@ -1,57 +1,39 @@
 "use client";
 import { IButton, IButtonProperty } from "@/app/types/button";
 
-export const Button: React.FC<IButtonProperty> = ({
-  type,
-  name,
-  children,
-  className,
-}) => {
+export const Button: React.FC<IButtonProperty> = ({ type, name, children, className }) => {
   switch (type) {
     case "primary":
-      return <PrimaryButton name={name} type="button" />;
+      return <PrimaryButton name={name} type="button" className={className}>{children}</PrimaryButton>;
     case "icon":
-      return (
-        <IconButton
-          name={name}
-          type="button"
-          children={children}
-          className={className}
-        />
-      );
+      return <IconButton name={name} type="button" className={className}>{children}</IconButton>;
     case "outlined":
-      return <OutlinedButton name={name} type="button" />;
-    case "secondary":
-    //     return <SecondaryButton name="Secondary" type="button" />
+      return <OutlinedButton name={name} type="button" className={className}>{children}</OutlinedButton>;
   }
 };
 
-const PrimaryButton: React.FC<IButton> = ({ name, type, className }) => {
+const PrimaryButton: React.FC<IButton> = ({ name, type, className, children }) => {
   return (
-    <button type={type} className={`${className} button-primary`}>
-      {name}
+    <button type={type} className={`${className} flex justify-center items-center button-primary`}>
+      {name && <span>{name}</span>}
+      <span className={`text-2xl`}>{children}</span>
     </button>
   );
 };
 
-const OutlinedButton: React.FC<IButton> = ({ name, type, className }) => {
+const OutlinedButton: React.FC<IButton> = ({ name, type, className, children }) => {
   return (
-    <button type={type} className={`${className} button-outlined`}>
-      {name}
+    <button type={type} className={`${className} flex justify-center items-center button-outlined`}>
+      {name && <span>{name}</span>}
+      <span className={`text-2xl`}>{children}</span>
     </button>
   );
 };
-const SecondaryButton = () => {};
-const IconButton: React.FC<IButton> = ({
-  name,
-  children,
-  childClass,
-  type,
-}) => {
+const IconButton: React.FC<IButton> = ({ name, children, type }) => {
   return (
-    <button type={type} className="flex items-center gap-5 p-3">
-      <span className={`${childClass} text-2xl`}>{children}</span>
+    <button type={type} className="flex justify-center items-center">
       {name && <span>{name}</span>}
+      <span className={`text-2xl`}>{children}</span>
     </button>
   );
 };

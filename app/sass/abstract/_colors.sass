@@ -1,0 +1,14 @@
+@use 'sass:map'
+
+$colors-map: ("dark-blue": #201e43, "medium-blue": #2d2796, "white": #ffffff, "white-dark": #eeeeee, "black": #000000, "dark-gray": #333333, "light-gray": #999999, "dark-orange": #c96134, "dark-yellow": #c9a834, "dark-green": #34c966, "dark-purple": #6434c9)
+
+$light-color-names: ("light-blue": "dark-blue", "light-orange": "dark-orange", "light-yellow": "dark-yellow", "light-green": "dark-green", "light-purple": "dark-purple")
+
+
+$new-color-map: ()
+@each $light-color, $original-color in $light-color-names 
+  $light-color-value: change-color-opacity(map-get($colors_map, $original-color), 50%)
+  $light-color-map: map-merge($new-color-map, ($light-color: $light-color-value))
+
+
+$colors: map-merge($map1: $colors_map, $map2: $new-color-map)
